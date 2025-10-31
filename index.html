@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduTask - All your tasks in one place</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-left">
+                        <div class="logo-icon">
+                            <svg class="graduation-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                            </svg>
+                        </div>
+                        <div class="header-info">
+                            <h1>EduTask</h1>
+                            <p>All your tasks in one place</p>
+                        </div>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="4"/>
+                            <path d="m12 2 0 2"/>
+                            <path d="m12 20 0 2"/>
+                            <path d="m12 2 0 2"/>
+                            <path d="m20.09 12 2 0"/>
+                            <path d="M1.91 12H3.91"/>
+                            <path d="m18.36 6.64 1.42-1.42"/>
+                            <path d="m4.22 4.22 1.42 1.42"/>
+                            <path d="m18.36 17.36 1.42 1.42"/>
+                            <path d="m4.22 19.78 1.42-1.42"/>
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="container">
+                <div class="content">
+                    <!-- Task Statistics -->
+                    <div class="stats-grid" id="statsGrid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">Total Tasks</span>
+                                <svg class="stat-icon text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                                </svg>
+                            </div>
+                            <div class="stat-value text-primary" id="totalTasks">0</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">Completed</span>
+                                <svg class="stat-icon text-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <div class="stat-value text-green" id="completedTasks">0</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">Due Today</span>
+                                <svg class="stat-icon text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                            </div>
+                            <div class="stat-value text-orange" id="dueTodayTasks">0</div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <span class="stat-title">Overdue</span>
+                                <svg class="stat-icon text-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="15" y1="9" x2="9" y2="15"/>
+                                    <line x1="9" y1="9" x2="15" y2="15"/>
+                                </svg>
+                            </div>
+                            <div class="stat-value text-red" id="overdueTasks">0</div>
+                        </div>
+                    </div>
+
+                    <!-- Task Form -->
+                    <div class="task-form-container">
+                        <div class="card" id="taskFormCard">
+                            <div class="card-content">
+                                <button class="add-task-btn" id="addTaskBtn">
+                                    <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="m15 12-6 0"/>
+                                        <path d="m12 9 0 6"/>
+                                    </svg>
+                                    Add New Task
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="card task-form hidden" id="taskForm">
+                            <div class="card-header">
+                                <h3 class="card-title">Add New Task</h3>
+                            </div>
+                            <div class="card-content">
+                                <form id="taskFormElement">
+                                    <div class="form-group">
+                                        <label for="taskTitle">Task Title</label>
+                                        <input type="text" id="taskTitle" placeholder="Enter task title..." required>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="taskSubject">Subject</label>
+                                            <select id="taskSubject">
+                                                <option value="">Select subject</option>
+                                                <option value="Mathematics">Mathematics</option>
+                                                <option value="Science">Science</option>
+                                                <option value="English">English</option>
+                                                <option value="History">History</option>
+                                                <option value="Computer Science">Computer Science</option>
+                                                <option value="Physics">Physics</option>
+                                                <option value="Chemistry">Chemistry</option>
+                                                <option value="Biology">Biology</option>
+                                                <option value="Art">Art</option>
+                                                <option value="Music">Music</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="taskDeadline">Deadline</label>
+                                            <input type="datetime-local" id="taskDeadline" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="taskDescription">Description (Optional)</label>
+                                        <textarea id="taskDescription" placeholder="Add task details..." rows="3"></textarea>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary">Add Task</button>
+                                        <button type="button" class="btn btn-outline" id="cancelForm">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Filters -->
+                    <div class="card filters-card">
+                        <div class="filters-content">
+                            <div class="search-container">
+                                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <path d="m21 21-4.35-4.35"/>
+                                </svg>
+                                <input type="text" id="searchInput" placeholder="Search tasks..." class="search-input">
+                            </div>
+
+                            <div class="filters-controls">
+                                <select id="statusFilter" class="filter-select">
+                                    <option value="all">All Tasks</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="overdue">Overdue</option>
+                                    <option value="due-today">Due Today</option>
+                                </select>
+
+                                <select id="subjectFilter" class="filter-select">
+                                    <option value="all">All Subjects</option>
+                                </select>
+
+                                <button class="btn btn-outline hidden" id="resetFilters">
+                                    <svg class="filter-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"/>
+                                    </svg>
+                                    Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tasks List -->
+                    <div class="tasks-container">
+                        <div class="empty-state hidden" id="emptyState">
+                            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                            </svg>
+                            <h3 id="emptyStateTitle">No tasks yet</h3>
+                            <p id="emptyStateMessage">Add your first task to get started with organizing your assignments!</p>
+                        </div>
+
+                        <div class="tasks-list" id="tasksList">
+                            <!-- Tasks will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
